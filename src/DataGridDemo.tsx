@@ -1,12 +1,14 @@
 import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid,GridColDef } from '@mui/x-data-grid';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
 export default function DataGridDemo() {
   const [rows, setRows] = useState([])
-   const [columns, setColumns] = useState([
-  {
+
+const columns: GridColDef<(typeof rows)[number]>[] = [
+{
     field: 'userid',
     headerName: 'UserId',
     type: 'number',
@@ -26,7 +28,9 @@ export default function DataGridDemo() {
     width: 150,
     editable: true,
   },
-  ])
+
+]
+   
 
   useEffect(() => {
     fetchRecords();
@@ -41,7 +45,7 @@ export default function DataGridDemo() {
       console.error(error);
     }
   };
-  
+
   return (
     <>
       <h2>Display the Data in a Table Formate By Using MUI</h2>

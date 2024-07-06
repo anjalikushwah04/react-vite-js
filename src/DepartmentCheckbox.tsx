@@ -7,6 +7,7 @@ interface Department {
   isSelected: boolean;
   subdepartments: Subdepartment[];
   isExpanded: boolean;
+
 }
 
 interface Subdepartment {
@@ -49,7 +50,7 @@ const departments: Department[] = [
 
 const DepartmentCheckbox = () => {
   const [departmentsState, setDepartmentsState] = React.useState(departments);
-const department: Department[] = departments.map((departmentJson) => ({
+  const department = departments.map((departmentJson) => ({
   id: departmentJson.id,
   name: departmentJson.name,
   isSelected: departmentJson.isSelected,
@@ -82,6 +83,7 @@ const department: Department[] = departments.map((departmentJson) => ({
   setDepartmentsState(updatedDepartments);
 };
 const handleSubdepartmentChange = (event: React.ChangeEvent<HTMLInputElement>, subdepartment: Subdepartment) => {
+  // const handleSubdepartmentChange = (event: React.ChangeEvent<HTMLInputElement>, subdepartment: Subdepartment) => {
   const updatedDepartments = departmentsState.map((department) => {
     if (department.id === subdepartment.departmentId) {
       department.subdepartments = department.subdepartments.map((sd) => {
